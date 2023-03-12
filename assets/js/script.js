@@ -1,9 +1,5 @@
-
-/////// execute code when page loads
-document.addEventListener("DOMContentLoaded", function(){
-    // ... then some code
-
-
+document.addEventListener("DOMContentLoaded", function(){ 
+  // ... then some code
 
     /// for demo purpose download link
     var body_el = document.querySelector("body");
@@ -12,10 +8,6 @@ document.addEventListener("DOMContentLoaded", function(){
     // end for demo 
 
 }); 
-// end DOMContentLoaded 
-
-  
-/////// Enable tooltip of Bootstrap5
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
