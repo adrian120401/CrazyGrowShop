@@ -1,13 +1,13 @@
 function SingleProduct() {
     return (
         <div className="home-section">
-                <section class="bg-primary padding-y-sm">
-                <div class="container">
+                <section className="bg-primary padding-y-sm">
+                <div className="container">
                 
-                    <ol class="breadcrumb ondark mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    <ol className="breadcrumb ondark mb-0">
+                    <li className="breadcrumb-item"><a href="#">Home</a></li>
+                    <li className="breadcrumb-item"><a href="#">Library</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">Data</li>
                     </ol>
                 
                 </div> 
