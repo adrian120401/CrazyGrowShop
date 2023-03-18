@@ -1,16 +1,23 @@
 import Header from './Header'; //Include Header
 import Footer from './Footer';
-//import SingleProduct from './SingleProduct'
 import AllProducts from './AllProducts'
+import SingleProduct from './SingleProduct';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      
-       
-          <Header></Header>
-          <AllProducts></AllProducts>
-          <Footer></Footer>
-     
+      <BrowserRouter basename="/CrazyGrowShop">
+        <Header></Header>
+          <Routes>
+            <Route path="/" element={<AllProducts />} />
+            <Route path="/producto" element={<SingleProduct />} />
+          </Routes>
+        <Footer></Footer>
+      </BrowserRouter>
     </div>
   );
 }

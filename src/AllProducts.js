@@ -1,51 +1,22 @@
+import { productos } from "./data/ProductsList"
+import { Link } from 'react-router-dom';
 
-const productos = [
-    {
-        "id":1,
-        "name":"Desmorrugador Metal 4 partes",
-        "price": 1000,
-        "img":"https://growshopdelpaso.com/wp-content/uploads/2020/05/desmo-de-metal.jpg",
-    },
-    {
-        "id":2,
-        "name":"Desmorrugador Metal 4 partes",
-        "price": 1000,
-        "img":"https://growshopdelpaso.com/wp-content/uploads/2020/05/desmo-de-metal.jpg",
-    },
-    {
-        "id":3,
-        "name":"Desmorrugador Metal 4 partes",
-        "price": 1000,
-        "img":"https://growshopdelpaso.com/wp-content/uploads/2020/05/desmo-de-metal.jpg",
-    },
-    {
-        "id":4,
-        "name":"Desmorrugador Metal 4 partes",
-        "price": 1000,
-        "img":"https://growshopdelpaso.com/wp-content/uploads/2020/05/desmo-de-metal.jpg",
-    },
-    {
-        "id":5,
-        "name":"Desmorrugador Metal 4 partes",
-        "price": 1000,
-        "img":"https://growshopdelpaso.com/wp-content/uploads/2020/05/desmo-de-metal.jpg",
-    }
-]
 
 function AllProducts() {
-
     const products = (array) =>{
         return array.map(element => {
             return(
-                <div className="col-lg-3 col-md-6 col-sm-6">
+                <div key={element.id} className="col-lg-3 col-md-6 col-sm-6">
                 <figure className="card-product-grid">
-                <a href="#" className="img-wrap rounded bg-gray-light"> 
-                    <img height="250" className="mix-blend-multiply" src="https://growshopdelpaso.com/wp-content/uploads/2020/05/desmo-de-metal.jpg" /> 
-                </a>
+                <Link onClick={()=>console.log(element)} to={{pathname: "/producto",}} state={element}> 
+                    <img height="250" className="mix-blend-multiply" src={element.img} /> 
+                </Link>
                 <figcaption className="pt-2">
-                    <a href="#" class="float-end btn btn-light btn-icon"> <i class="fa-solid fa-cart-plus"></i> </a>
+                    <a href="#" className="float-end btn btn-light btn-icon"> <i className="fa-solid fa-cart-plus"></i> </a>
                     <strong className="price">${element.price}</strong> 
-                    <a href="#" className="title text-truncate">{element.name}</a>
+                    <Link onClick={()=>console.log(element)} to={{pathname: "/producto",}} state={element}>
+                    {element.name}
+                    </Link>
                 </figcaption>
             </figure>
             </div>
