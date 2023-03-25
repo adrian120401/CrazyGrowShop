@@ -2,19 +2,32 @@ import { productos } from "./data/ProductsList"
 import { Link } from 'react-router-dom';
 
 
-function AllProducts() {
+function AllProducts({onAction}) {
+
+    
+    const addProductToCart = (product , amount)=> {
+        const productsCart = JSON.parse(localStorage.getItem('carrito')) || [];
+        if(!productsCart.some((element) => element.id == product.id)){
+            product.amount = amount
+            product.selectedOption = product.option[0]
+            productsCart.push(product)
+            localStorage.setItem('carrito', JSON.stringify(productsCart));
+            onAction(amount)
+        }
+    }
+
     const products = (array) =>{
         return array.map(element => {
             return(
                 <div key={element.id} className="col-lg-3 col-md-6 col-sm-6">
                 <figure className="card-product-grid">
-                <Link onClick={()=>console.log(element)} to={{pathname: "/producto",}} state={element}> 
+                <Link to={{pathname: "/productos/producto",}} state={element}> 
                     <img height="250" className="mix-blend-multiply" src={element.img} /> 
                 </Link>
                 <figcaption className="pt-2">
-                    <a href="#" className="float-end btn btn-light btn-icon"> <i className="fa-solid fa-cart-plus"></i> </a>
+                    <a onClick={()=> addProductToCart(element,1)} className="float-end btn btn-light btn-icon"> <i className="fa-solid fa-cart-plus"></i> </a>
                     <strong className="price">${element.price}</strong> 
-                    <Link onClick={()=>console.log(element)} to={{pathname: "/producto",}} state={element}>
+                    <Link className="title text-truncate" to={{pathname: "/productos/producto",}} state={element}>
                     {element.name}
                     </Link>
                 </figcaption>

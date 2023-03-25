@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Header from './Header'; //Include Header
 import Footer from './Footer';
 import AllProducts from './AllProducts'
@@ -7,16 +8,25 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+
 function App() {
+  const [productsCart,setProductsCart] = useState([])
+  const [amount,setAmount] = useState(1)
+
+  function addProductClick(num){
+    const getProductsByLocalStorage = JSON.parse(localStorage.getItem('carrito')) || [];
+    setProductsCart(getProductsByLocalStorage)
+    setAmount(num)
+  }
   return (
     <div className="App">
       <BrowserRouter basename="/CrazyGrowShop">
         <Header></Header>
           <Routes>
-            <Route path="/" element={<AllProducts />} />
-            <Route path="/producto" element={<SingleProduct />} />
+            <Route path="/productos" element={<AllProducts onAction={addProductClick}/>} />
+            <Route path="/productos/producto" element={<SingleProduct onAction={addProductClick} />} />
           </Routes>
-        <Footer></Footer>
+        <Footer products={productsCart}></Footer>
       </BrowserRouter>
     </div>
   );

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Header() {
     return (
      
@@ -42,7 +44,7 @@ function Header() {
                     <a className="nav-link ps-0" href="#"> Principal </a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Productos</a>
+                    <Link className="nav-link" to={{pathname: "/productos",}}>Productos</Link>
                     </li>
                     <li className="nav-item">
                     <a className="nav-link" href="#">Sobre nosotros</a>
