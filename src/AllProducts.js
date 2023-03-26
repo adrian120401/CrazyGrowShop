@@ -1,10 +1,28 @@
-import { productos } from "./data/ProductsList"
 import { Link } from 'react-router-dom';
+import { collection, addDoc,getDocs } from "firebase/firestore";
+import { db } from './firebaseConfig';
+import { useState,useEffect } from 'react';
 
 
 function AllProducts({onAction}) {
-
+    const [productos,setProductos] = useState([])
     
+    const fetchPost = async () => {
+       
+        await getDocs(collection(db, "productos"))
+            .then((querySnapshot)=>{               
+                const newData = querySnapshot.docs
+                    .map((doc) => ({...doc.data(), id:doc.id }));
+                setProductos(newData);                
+                console.log(productos, newData);
+            })
+       
+    }
+   
+    useEffect(()=>{
+        fetchPost();
+    }, [])
+
     const addProductToCart = (product , amount)=> {
         const productsCart = JSON.parse(localStorage.getItem('carrito')) || [];
         if(!productsCart.some((element) => element.id == product.id)){
@@ -22,7 +40,7 @@ function AllProducts({onAction}) {
                 <div key={element.id} className="col-lg-3 col-md-6 col-sm-6">
                 <figure className="card-product-grid">
                 <Link to={{pathname: "/productos/producto",}} state={element}> 
-                    <img height="250" className="mix-blend-multiply" src={element.img} /> 
+                    <img height="250" className="mix-blend-multiply" src={element.img[0]} /> 
                 </Link>
                 <figcaption className="pt-2">
                     <a onClick={()=> addProductToCart(element,1)} className="float-end btn btn-light btn-icon"> <i className="fa-solid fa-cart-plus"></i> </a>

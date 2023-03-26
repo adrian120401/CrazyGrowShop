@@ -8,15 +8,14 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { InsertProduct } from './InsertProduct';
 
 function App() {
   const [productsCart,setProductsCart] = useState([])
-  const [amount,setAmount] = useState(1)
 
-  function addProductClick(num){
+  function addProductClick(){
     const getProductsByLocalStorage = JSON.parse(localStorage.getItem('carrito')) || [];
     setProductsCart(getProductsByLocalStorage)
-    setAmount(num)
   }
   return (
     <div className="App">
@@ -25,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/productos" element={<AllProducts onAction={addProductClick}/>} />
             <Route path="/productos/producto" element={<SingleProduct onAction={addProductClick} />} />
+            <Route path="/agregarProducto" element={<InsertProduct />} />
           </Routes>
         <Footer products={productsCart}></Footer>
       </BrowserRouter>
