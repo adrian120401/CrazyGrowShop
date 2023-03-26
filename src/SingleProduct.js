@@ -1,15 +1,16 @@
-import { useState} from 'react';
+import { useState,useEffect} from 'react';
 import { Link,useLocation,useNavigate } from 'react-router-dom';
+import { redirect } from "react-router-dom";
 
 export function SingleProduct({onAction}) {
+    
     const location = useLocation();
     const data = location.state || {};
     const navigate = useNavigate();
 
+
     const [amount,setAmount] = useState(1)
     const [option,setOption] = useState(data.option[0])
-
-
 
     const addProductToCart = (product , amount)=> {
         const productsCart = JSON.parse(localStorage.getItem('carrito')) || [];

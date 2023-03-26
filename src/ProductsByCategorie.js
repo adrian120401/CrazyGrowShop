@@ -1,7 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
 
-function AllProducts({onAction,productos}) {
- 
+export function ProductsByCategorie({productos,onAction}){
+
+    const location = useLocation();
+    const data = location.state || {};
+
     const addProductToCart = (product , amount)=> {
         const productsCart = JSON.parse(localStorage.getItem('carrito')) || [];
         if(!productsCart.some((element) => element.id == product.id)){
@@ -15,6 +18,7 @@ function AllProducts({onAction,productos}) {
 
     const products = (array) =>{
         return array.map(element => {
+            if(element.categories.indexOf(data) != -1){
             return(
                 <div key={element.id} className="col-lg-3 col-md-6 col-sm-6">
                 <figure className="card-product-grid">
@@ -30,7 +34,7 @@ function AllProducts({onAction,productos}) {
                 </figcaption>
             </figure>
             </div>
-            )
+            )}
         })
     }
 
@@ -41,7 +45,7 @@ function AllProducts({onAction,productos}) {
             <div className="container">
 
                 <header className="section-heading">
-                    <h3 className="section-title">Productos</h3>
+                    <h3 className="section-title">{data}</h3>
                 </header> 
 
                 <div className="row">
@@ -65,7 +69,6 @@ function AllProducts({onAction,productos}) {
         </div>
       
        
-    );
-}
 
-export default AllProducts;
+    )
+}

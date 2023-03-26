@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom';
 
-function Header() {
+function Header({categories}) {
+
+
+    const getCategories = () => {
+        return categories.map(element => {
+            return(
+                <li key={element}><Link className="dropdown-item" to={{pathname: "/productos/categoria",}} state={element}>
+                {element}
+                </Link></li>
+            )
+        })
+    }
     return (
      
         <header className="section-header">	
@@ -54,8 +65,7 @@ function Header() {
                         Categorias
                     </a>
                     <ul className="dropdown-menu">
-                        <li> <a className="dropdown-item" href="#">Cultivo </a> </li>
-                        <li> <a className="dropdown-item" href="#">Accesorios</a> </li>
+                        {getCategories()}
                     </ul>
                     </li>
                 </ul>
