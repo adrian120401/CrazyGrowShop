@@ -1,12 +1,19 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header({categories}) {
 
-
+    const navigate = useNavigate()
+    const [value,setValue] = useState("")
+    const onSearch = (event) => {
+        event.preventDefault();
+        navigate(`/productos/search/${value}`);
+    }
     const getCategories = () => {
         return categories.map(element => {
             return(
-                <li key={element}><Link className="dropdown-item" to={{pathname: "/productos/categoria",}} state={element}>
+                <li key={element}><Link className="dropdown-item" to={{pathname: `/productos/categoria/${element}`,}} state={element}>
                 {element}
                 </Link></li>
             )
@@ -29,10 +36,10 @@ function Header({categories}) {
                         </div>
                 </div> 
                 <div className="col-lg-5 col-md-12 col-12">
-                    <form action="#" className="">
+                    <form onSubmit={(event) => onSearch(event)}>
                             <div className="input-group">
-                            <input type="search" className="form-control" style={{width:"55%"}} placeholder="Buscar" />
-                            <button className="btn btn-primary">
+                            <input type="search" className="form-control" style={{width:"55%"}} placeholder="Buscar" onChange={(event) => setValue(event.target.value)}/>
+                            <button type='submit' className="btn btn-primary">
                                 <i className="fa fa-search"></i> 
                             </button>
                             </div> 
@@ -52,13 +59,13 @@ function Header({categories}) {
                 <div className="collapse navbar-collapse" id="navbar_main">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                    <a className="nav-link ps-0" href="#"> Principal </a>
+                    <Link className="nav-link ps-0" to={{pathname: "/",}}>Principal</Link>
                     </li>
                     <li className="nav-item">
                     <Link className="nav-link" to={{pathname: "/productos",}}>Productos</Link>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Sobre nosotros</a>
+                    <Link className="nav-link" to={{pathname: "/sobreNosotros",}}>Sobre nosotros</Link>
                     </li>
                     <li className="nav-item dropdown">
                     <a className="dropdown-toggle nav-link" href="#" data-bs-toggle="dropdown">
