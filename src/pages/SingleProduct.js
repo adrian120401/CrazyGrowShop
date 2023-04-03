@@ -3,6 +3,8 @@ import { collection,getDocs,query,where } from "firebase/firestore";
 import { db } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { CCarousel,CCarouselItem,CImage } from '@coreui/react';
+import '@coreui/coreui/dist/css/coreui.min.css'
 
 export function SingleProduct({onAction}) {
     const [producto,setProducto] = useState(null)
@@ -60,6 +62,17 @@ export function SingleProduct({onAction}) {
         })
     }
 
+    const getCImages = (product) =>{
+        return product.img.map(item =>{
+            return(
+                <CCarouselItem>
+                    <CImage className="d-block w-100" src={item} alt="slide 1" />
+                </CCarouselItem>
+            )
+        }
+        )
+    }
+
     return (
         
         <div className="home-section">
@@ -71,7 +84,9 @@ export function SingleProduct({onAction}) {
                 <aside className="col-lg-6">
                     <article className="gallery-wrap"> 
                     <div className="img-big-wrap img-thumbnail">
-                       <img height="560" src={producto.img[0]}/>
+                       <CCarousel controls indicators dark>
+                        {getCImages(producto)}
+                       </CCarousel>
                     </div>
                     </article> 
                 </aside>
@@ -100,7 +115,7 @@ export function SingleProduct({onAction}) {
                         <path d="M19 13H5v-2h14v2z"></path>
                         </svg>
                         </button>
-                        <input className="form-control text-center" placeholder="" value={amount}/>
+                        <input className="form-control text-center" value={amount}/>
                         <button className="btn btn-icon btn-light" type="button" onClick={()=> setAmount(amount + 1)}> 
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#999" viewBox="0 0 24 24">
                         <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
