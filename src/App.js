@@ -51,7 +51,7 @@ function App() {
   }
   return (
     <div className="d-flex flex-column min-vh-100">
-      <BrowserRouter basename="/CrazyGrowShop">
+      <BrowserRouter>
         <Header categories={categories}></Header>
           <Routes>
             <Route path="/" element={<Home />} />

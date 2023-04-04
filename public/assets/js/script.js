@@ -19,6 +19,6 @@ document.querySelectorAll('.dropdown-menu').forEach(function(element){
       e.stopPropagation();
     });
 });
-// end querySelectorAll
+
 
 
