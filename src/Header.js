@@ -8,7 +8,10 @@ function Header({categories}) {
     const [value,setValue] = useState("")
     const onSearch = (event) => {
         event.preventDefault();
-        navigate(`/productos/search/${value}`);
+        if(value != ""){
+           navigate(`/productos/search/${value}`); 
+           setValue("")
+        }
     }
     const getCategories = () => {
         return categories.map(element => {
