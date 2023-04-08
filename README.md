@@ -68,3 +68,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+Para la ejecucion de firebase hosting verificar la ruta de los archivos de la carpeta build y el index.html por si se agrega CrazyGrowShop/ a la ruta de importacion del js y css

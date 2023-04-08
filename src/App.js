@@ -9,7 +9,7 @@ import About from './pages/About'
 import {
   BrowserRouter,
   Routes,
-  Route,
+  Route
 } from "react-router-dom";
 import { InsertProduct } from './pages/InsertProduct';
 import { collection, addDoc,getDocs } from "firebase/firestore";
@@ -51,7 +51,6 @@ function App() {
   }
   return (
     <div className="d-flex flex-column min-vh-100">
-      <BrowserRouter>
         <Header categories={categories}></Header>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -64,7 +63,6 @@ function App() {
           </Routes>
         <Cart products={productsCart}></Cart>
         <Footer></Footer>
-      </BrowserRouter>
     </div>
   );
 }
