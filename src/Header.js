@@ -29,7 +29,9 @@ function Header({categories}) {
             <div className="container">
                 <div className="row gy-3 align-items-center">
                 <div className="col-lg-2 col-sm-4 col-4">
-                    <img width="170" height="100" src="assets/images/logo1.png" alt="Logo" />
+                    <Link to={{pathname: "/",}}>
+                        <img width="170" height="100" src="assets/images/logo1.png" alt="Logo" />
+                    </Link>
                 </div>
                 <div className="order-lg-last col-lg-5 col-sm-8 col-8">
                     <div className="float-end">
