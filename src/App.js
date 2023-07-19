@@ -1,7 +1,6 @@
 import Header from './Header';
 import Footer from './Footer';
 import Cart from './pages/Cart';
-import { Home } from './pages/Home';
 import AllProducts from './pages/AllProducts'
 import SingleProduct from './pages/SingleProduct';
 import { ProductsByCategorie } from './pages/ProductsByCategorie';
@@ -21,11 +20,11 @@ function App() {
   const [productsCart,setProductsCart] = useState([])
   const [productos,setProductos] = useState([])
   const [categories,setCategories] = useState([])
-    
+
   const fetchPost = async () => {
-     
+
       await getDocs(collection(db, "productos"))
-          .then((querySnapshot)=>{               
+          .then((querySnapshot)=>{
               const newData = querySnapshot.docs
                   .map((doc) => ({...doc.data(), id:doc.id }));
               setProductos(newData);
@@ -34,13 +33,13 @@ function App() {
                   if(categories.indexOf(item) === -1){
                     categories.push(item)
                 }
-                })  
-              })               
+                })
+              })
           })
-        
-     
+
+
   }
- 
+
   useEffect(()=>{
       fetchPost();
   }, [])
@@ -53,8 +52,7 @@ function App() {
     <div className="d-flex flex-column min-vh-100">
         <Header categories={categories}></Header>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/productos" element={<AllProducts onAction={addProductClick} productos={productos}/>} />
+            <Route path="/" element={<AllProducts onAction={addProductClick} productos={productos}/>} />
             <Route path="/productos/producto/:name" element={<SingleProduct onAction={addProductClick}/>} />
             <Route path="/productos/categoria/:category" element={<ProductsByCategorie onAction={addProductClick}/>} />
             <Route path="/productos/search/:param" element={<Search onAction={addProductClick}/>} />
